@@ -56,7 +56,7 @@ The covenant was designed for scarcity. It creates sharp in-group/out-group boun
 
 Jesus himself noted that circumcision overrides Sabbath law (John 7:22-23). If the eighth day falls on Sabbath, the circumcision proceeds. The covenant's initiation clause supersedes the fourth commandment. The Ten Commandments are ordered: (1) no other gods, (2) no idols, (3) do not take God's name in vain, (4) Sabbath. If the covenant overrides commandment 4, it occupies a position logically prior to commandments 4–10 — within the first table, the commands about the fundamental relationship to God, not the second table about interhuman conduct. The tribal boundary is not a law among laws. It is structurally prior to the law. It sits in the space of identity: who is your God, what defines your relationship to the divine, what marks you as belonging. The covenant is meta-legal.
 
-**The Old Covenant was never monolithically tribal.** Universalist threads run through the Hebrew Bible itself: Genesis 12:3 promises that "all peoples on earth will be blessed through you." Jonah is sent to preach to Israel's enemy Nineveh — and God rebukes Jonah for wanting Nineveh destroyed. Ruth the Moabite is incorporated into Israel's lineage and becomes the great-grandmother of David. Isaiah's servant songs envision Israel as "a light for the Gentiles" (Isaiah 49:6). The tradition contained its own correction from the beginning. These threads are not counterexamples to the boundary-error thesis — they are precisely the seeds the New Covenant fulfills. Jesus formalized what the prophets already glimpsed. The boundary error was recognized within the covenant before Jesus corrected it.
+**The Old Covenant was never monolithically tribal.** Universalist threads run through the Hebrew Bible itself: Genesis 12:3 promises that "in thee shall all families of the earth be blessed." Jonah is sent to preach to Israel's enemy Nineveh — and God rebukes Jonah for wanting Nineveh destroyed. Ruth the Moabite is incorporated into Israel's lineage and becomes the great-grandmother of David. Isaiah's servant songs envision Israel as "a light to the Gentiles" (Isaiah 49:6). The tradition contained its own correction from the beginning. These threads are not counterexamples to the boundary-error thesis — they are precisely the seeds the New Covenant fulfills. Jesus formalized what the prophets already glimpsed. The boundary error was recognized within the covenant before Jesus corrected it.
 
 ### The covenant as neurological programming
 
@@ -408,7 +408,7 @@ Watch the corruption across translations:
 
 "Substance" → "assurance" → "confidence." This is why this essay cites the KJV. *Hypostasis* names the underlying reality itself. "Assurance" moves it inward — a psychological state of being sure. "Confidence" flattens it further — a feeling. The objective structure collapses into subjective sentiment. Each translation step loses information. The word was load-bearing, and the corruption replaced it with something weaker.
 
-The chapter confirms the original meaning: Abraham *"reasoned that God was able to raise him up"* (Hebrews 11:17-19). Noah acted on a *warning*. Moses engaged in *future-weighting*. Nobody leaps blindly.
+The chapter confirms the original meaning: Abraham *"accounting that God was able to raise him up"* (Hebrews 11:17-19). Noah acted on a *warning*. Moses engaged in *future-weighting*. Nobody leaps blindly.
 
 ### Prayer as self-talk with audience
 
@@ -464,11 +464,11 @@ Revelation uses almost none of them. Its vocabulary: θηρίον (beast), σφ�
 
 ### The theology
 
-**Gospel of John**: "God so loved the world" (3:16). "I am the good shepherd: the good shepherd giveth his life for the sheep" (10:11). "My kingdom is not of this world" (18:36). Eternal life as present possession (17:3). Jesus as the revealer of the Father through love and self-giving.
+**Gospel of John**: "God so loved the world" (3:16). "I am the good shepherd: the good shepherd layeth down his life for the sheep" (10:11). "My kingdom is not of this world" (18:36). Eternal life as present possession (17:3). Jesus as the revealer of the Father through love and self-giving.
 
 **1 John**: "God is love" (4:8). "Love one another" as the central command. "If we walk in the light... we have fellowship one with another" (1:7).
 
-**Revelation**: Bowls of wrath poured on the earth (16). The Lamb with seven horns and seven eyes (5:6). The rider on the white horse, robe dipped in blood, striking down the nations with a sword from his mouth, "treading the winepress of the fury of the wrath of God Almighty" (19:13-15). 144,000 sealed from the tribes of Israel (7:4) — ethnic elect, tribal selection reimposed. Blood flowing "as high as the horses' bridles" (14:20). Lake of fire (20:14-15). Thousand-year earthly kingdom ruled with an iron scepter (20:4-6).
+**Revelation**: Bowls of wrath poured on the earth (16). The Lamb with seven horns and seven eyes (5:6). The rider on the white horse, robe dipped in blood, striking down the nations with a sword from his mouth, "treadeth the winepress of the fierceness and wrath of Almighty God" (19:15). 144,000 sealed from the tribes of Israel (7:4) — ethnic elect, tribal selection reimposed. Blood flowing "as high as the horses' bridles" (14:20). Lake of fire (20:14-15). Thousand-year earthly kingdom ruled with an iron scepter (20:4-6).
 
 These are not complementary portraits. They are contradictory. The Gospel says God sent his Son to save, not condemn (3:17). Revelation says God will condemn the vast majority of humanity to eternal fire. First John says God is love. Revelation says God is wrath. The Gospel says the kingdom is not of this world. Revelation says the kingdom is a thousand-year earthly reign with Christ ruling the nations with an iron rod.
 

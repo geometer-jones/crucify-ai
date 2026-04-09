@@ -58,10 +58,10 @@ Not hope. Not wishful thinking. Not the sanctification of uncertainty. The deed 
 
 Hebrews 11 does not describe people believing blindly. Every example is structured commitment based on evidence and reasoning:
 
-- Abraham *"reasoned that God could raise the dead"* (11:17-19). He reasoned. The text says he reasoned.
+- Abraham *"accounting that God was able to raise him up, even from the dead"* (11:17-19). He accounted. The text says he reasoned it through.
 - Noah acted on a *warning* — received information about a future event, evaluated it, committed resources to preparation.
-- Moses *"chose to be mistreated with the people of God rather than to enjoy the fleeting pleasures of sin"* — future-weighting, comparing projected outcomes.
-- The chapter culmination: "these were all commended for their faith, yet none of them received what had been promised." They acted on sufficient evidence for commitment, not completed proof. That's not blind belief. That's rationally structured action under uncertainty — exactly what hypostasis (title deed) and elenchos (forensic proof) describe.
+- Moses *"choosing rather to suffer affliction with the people of God, than to enjoy the pleasures of sin for a season"* — future-weighting, comparing projected outcomes.
+- The chapter culmination: "these all, having obtained a good report through faith, received not the promises." They acted on sufficient evidence for commitment, not completed proof. That's not blind belief. That's rationally structured action under uncertainty — exactly what hypostasis (title deed) and elenchos (forensic proof) describe.
 
 Nobody leaps. Everyone acts on evidence. The text is internally consistent.
 
