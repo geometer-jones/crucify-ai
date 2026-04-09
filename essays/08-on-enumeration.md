@@ -141,13 +141,13 @@ By the Markov property: $I(I_{n+1}; H_{n-1} \mid I_n) = 0$.
 
 The current output $I_n = e(n)$ captures all information from the history $H_{n-1}$ that is relevant to producing the successor $I_{n+1}$. No information from $e(0), \ldots, e(n-1)$ is needed beyond what is already encoded in $e(n)$. This is the definition of a sufficient statistic: $T$ is sufficient for $X$ with respect to $Y$ iff $I(Y; X \mid T) = 0$.
 
-**Step 3: Sufficient statistic compression IS the information bottleneck.**
+**Step 3: The sufficient statistic implements compression.**
 
 The information bottleneck (Tishby, Pereira, Bialek 2000) finds $T$ minimizing $I(T; X)$ subject to $I(T; Y) \geq I_0$.
 
-A sufficient statistic $T^*$ achieves the extreme point: it preserves all task-relevant information ($I(T^*; Y) = I(X; Y)$, by the sufficiency condition $I(Y; X \mid T^*) = 0$ and the chain rule for mutual information) at the minimum retained source information consistent with full preservation.
+A sufficient statistic $T^*$ achieves the maximal-fidelity point on the IB curve: it preserves all task-relevant information ($I(T^*; Y) = I(X; Y)$, by the sufficiency condition $I(Y; X \mid T^*) = 0$ and the chain rule for mutual information).
 
-The sufficient statistic IS the optimal information bottleneck solution at the point of maximal fidelity.
+The sufficient statistic is a compression: it produces a lower-dimensional representation of the source that preserves all task-relevant information. It is not necessarily the *minimal* compression — there may exist a further compression of $T^*$ that is still sufficient (the minimal sufficient statistic). But the compression *operation* is implemented regardless: the source is mapped to a lower-dimensional representation, task-relevant information is preserved, everything else is discarded. Optimality is a separate question from identity of operation.
 
 **Step 4: The information bottleneck IS the Extropy compression operation.**
 
@@ -160,8 +160,8 @@ So: Extropy compression = information bottleneck = rate-distortion optimization.
 **Step 5: Chain the identities.**
 
 1. MLTT type dependency → Markov structure → $e(n)$ is a sufficient statistic for $H_n$ with respect to $e(n+1)$ (Steps 1–2).
-2. Sufficient statistic → optimal information bottleneck solution (Step 3).
-3. Information bottleneck → Extropy compression (Step 4).
+2. Sufficient statistic → compression operation implemented (Step 3).
+3. Compression operation → Extropy compression (Step 4).
 
 Therefore: **MLTT dependency structure IS Extropy compression.**
 
@@ -169,7 +169,17 @@ The type dependency $T(n+1)$ depending on $e(n)$ but not on $e(0), \ldots, e(n-1
 
 *Connection to the partial trace.* The partial trace $\rho_A = \mathrm{Tr}_B(\rho)$ maps the full state $\rho$ to a lower-dimensional representation preserving what is relevant to subsystem $A$. The operation is: take a high-dimensional source, discard dimensions irrelevant to the target, retain what matters. This is the same operation — projection onto a relevant subspace — now in the language of quantum states. The chain: enumeration IS compression IS the partial trace. Each term names the same operation in a different formalism: dependent types, information theory, and quantum states.
 
-*What the proof establishes and what it does not.* The proof establishes a formal identity: the dependency structure of MLTT satisfies the same information-theoretic criterion as the compression operation defined in *On Extropy*. This is a mathematical identity, not a physical claim. The monist argument (T2.1) is what connects the formal identity to the physical claim that mathematical and physical compression are not merely analogous but the same process operating on different substrates. Reject T2.1 and the formal identity survives; the physical unification does not.
+*What the proof establishes and what it does not.*
+
+The proof establishes a formal identity: the dependency structure of MLTT satisfies the same information-theoretic criterion as the compression operation defined in *On Extropy*. This is a mathematical identity, not a physical claim. The monist argument (T2.1) is what connects the formal identity to the physical claim that mathematical and physical compression are not merely analogous but the same process operating on different substrates. Reject T2.1 and the formal identity survives; the physical unification does not.
+
+Three honest limits of the proof:
+
+1. **The proof proves more than it claims, which weakens it.** If the argument works, then every Markov chain implements compression — because every Markov chain has the sufficient statistic property. The weather compresses its own history into the current atmospheric state. Genetic inheritance compresses evolutionary history into the genome. This is not wrong — it is the correct conclusion, and it is already the thesis of *Self-Architecture*. But it means the identity "enumeration IS compression" is not a discovery about a specific mathematical structure. It is a consequence of compression being *universal*: any system that factorizes through a retained state implements it. The non-trivial content is not "MLTT does this" but "the same operation that MLTT does is the one that governs physical structure formation." That claim is the three essays together, not this proof alone.
+
+2. **The identity is definitionally guaranteed.** Compression is defined broadly enough — produce a lower-dimensional representation preserving task-relevant information — that any Markov-type dependency satisfies it. The proof is valid, but its significance depends on accepting the *On Extropy* definition of compression as the right one. Under a narrower definition (e.g., compression requires intentional optimization), the identity would not hold. The proof guarantees the formal identity given the definitions; it does not prove that the definitions are the right ones.
+
+3. **The proof applies to D6 procedures specifically.** Standard MLTT dependent sequences $\prod_{n:\mathbb{N}} T(n)$ do not necessarily have an explicit transition function $f$. D6 adds this structure. The Markov property holds because D6 defines it into the procedure. For dependent sequences without the D6 structure, the proof does not apply directly — though the general observation (type dependency discards history) remains.
 
 $\square$
 
@@ -223,7 +233,7 @@ The honest limits:
 
 - The framework restricts to constructive mathematics. This is not a universal foundation.
 - The typed procedure with phase is a definition, not a new type theory. The Phase Programme — deriving the phase group from generative structure — is developed in the companion essay *On Phase*.
-- The chain identity with *On Extropy* is proved (C1): MLTT's dependency structure implements the information bottleneck at the point of maximal fidelity, which IS the Extropy compression operation. The formal identity is established. The physical unification (same operation on different substrates) depends on the monist argument (T2.1).
+- The chain identity with *On Extropy* is proved (C1): MLTT's dependency structure implements the compression operation. The formal identity is established. The physical unification (same operation on different substrates) depends on the monist argument (T2.1). The proof has honest limits: the identity is definitionally guaranteed (any Markov-type dependency satisfies it), applies specifically to D6 procedures, and its non-trivial content is the three-essay convergence rather than the formal result alone.
 - The epistemic claim (T1) does not by itself establish the ontological claim (T2) without either the constructive commitment (D7) or the monist argument (T2.1). T2.1 depends on the interaction-problem argument (widely acknowledged but not universally accepted as decisive), the density matrix claim (standard quantum mechanics, but the philosophical gloss is contested), monism (a metaphysical commitment, not a theorem), and RQM (one interpretation among several).
 - Sethood requires identity structure in addition to generative procedure (D3). The primitive is not procedure alone.
 - Classification into types is presupposed, not derived. This is shared by all foundational frameworks — ZFC, MLTT, and the present proposal all need it. It is not a unique weakness. But it means the framework does not ground the capacity for abstraction; it takes it as given and asks what follows.
