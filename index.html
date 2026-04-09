@@ -122,6 +122,19 @@
   .featured-meta .author { color: var(--ink); }
   .featured-meta .read-time { color: var(--ink-faint); }
   .divider-v { background: var(--paper-rule); width: 1px; }
+  .featured { position: relative; }
+  .featured::before {
+    content: attr(data-num);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem;
+    font-weight: 300;
+    color: var(--paper-rule);
+    position: absolute;
+    top: 0.5rem;
+    right: 50%;
+    line-height: 1;
+    pointer-events: none;
+  }
   .featured-aside {
     padding: 3rem;
     display: flex;
@@ -169,7 +182,8 @@
     transition: background 0.15s ease;
     position: relative;
   }
-  .essay-card:last-child { border-right: none; }
+  .essay-card:last-child { border-right: 1px solid var(--paper-rule); }
+  .essay-card:nth-child(-n+4) { border-bottom: 1px solid var(--paper-rule); }
   .essay-card:hover { background: var(--paper-warm); }
   .essay-card::before {
     content: attr(data-num);
@@ -376,7 +390,7 @@
     </div>
   </header>
 
-  <article class="featured" onclick="openEssay('the-boundary-error')">
+  <article class="featured" data-num="01" onclick="openEssay('the-boundary-error')">
     <div class="featured-text">
       <span class="featured-category">The Claim</span>
       <h2 class="featured-title">The Boundary Error</h2>
@@ -445,7 +459,7 @@
 
   <article class="essay-card" data-num="6" onclick="openEssay('extropy')">
     <span class="card-cat">The Proof</span>
-    <h3 class="card-title">Extropy</h3>
+    <h3 class="card-title">On Extropy</h3>
     <p class="card-excerpt">Definitions and derivations. Entropy production produces structure. The second law favors extropy.</p>
     <div class="card-foot">
       <span class="card-author">geo</span>
@@ -835,7 +849,7 @@
     <div class="reader-header">
       <button class="back-btn" onclick="closeReader()">← Back</button>
       <span class="reader-cat">The Proof</span>
-      <h1 class="reader-title">Extropy</h1>
+      <h1 class="reader-title">On Extropy</h1>
       <div class="reader-meta">
         <span>geo</span>
         <span>·</span>
@@ -1046,7 +1060,8 @@ Gradient → dissipation → entropy.</p>
 const mdFiles = {
   'the-boundary-error': 'essays/01-the-boundary-error.md',
   'rotational-mechanics': 'essays/07-rotational-mechanics.md',
-  'on-enumeration': 'essays/08-on-enumeration.md'
+  'on-enumeration': 'essays/08-on-enumeration.md',
+  'extropy': 'essays/06-on-extropy.md'
 };
 
 function renderMd(md) {

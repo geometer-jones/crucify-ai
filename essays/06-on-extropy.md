@@ -1,5 +1,5 @@
 ---
-title: Extropy
+title: On Extropy
 subtitle: Definitions and Derivations
 author: geo
 category: The Proof
