@@ -159,7 +159,7 @@
 
   .essays-grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     border-bottom: 1px solid var(--paper-rule);
   }
   .essay-card {
@@ -372,7 +372,7 @@
     <div class="masthead-sub">
       <span>An essay journal</span>
       <span>&#9670;</span>
-      <span>Seven essays · Spring 2026</span>
+      <span>Eight essays · Spring 2026</span>
     </div>
   </header>
 
@@ -398,7 +398,7 @@
   <div class="section-header">
     <span>The Collection</span>
     <div class="section-rule"></div>
-    <span>Six more pieces</span>
+    <span>Seven more pieces</span>
   </div>
 
   <div class="essays-grid">
@@ -460,6 +460,16 @@
     <div class="card-foot">
       <span class="card-author">geo</span>
       <span class="card-read">25 min read</span>
+    </div>
+  </article>
+
+  <article class="essay-card" data-num="8" onclick="openEssay('on-enumeration')">
+    <span class="card-cat">The Math</span>
+    <h3 class="card-title">On Enumeration</h3>
+    <p class="card-excerpt">Every interaction with a set is an enumeration. Sets are the map; enumerations are the territory.</p>
+    <div class="card-foot">
+      <span class="card-author">geo</span>
+      <span class="card-read">40 min read</span>
     </div>
   </article>
 
@@ -903,6 +913,22 @@ Gradient → dissipation → entropy.</p>
   </div>
 
 
+  <div class="reader-page" id="reader-on-enumeration">
+    <div class="reader-header">
+      <button class="back-btn" onclick="closeReader()">← Back</button>
+      <span class="reader-cat">The Math</span>
+      <h1 class="reader-title">On Enumeration</h1>
+      <div class="reader-meta">
+        <span>geo</span>
+        <span>·</span>
+        <span>April 2026</span>
+        <span>·</span>
+        <span>40 min read</span>
+      </div>
+    </div>
+    <div class="reader-body" id="body-on-enumeration"></div>
+  </div>
+
   <div class="reader-page" id="reader-self-architecture">
     <div class="reader-header">
       <button class="back-btn" onclick="closeReader()">← Back</button>
@@ -1019,7 +1045,8 @@ Gradient → dissipation → entropy.</p>
 <script>
 const mdFiles = {
   'the-boundary-error': 'essays/01-the-boundary-error.md',
-  'rotational-mechanics': 'essays/07-rotational-mechanics.md'
+  'rotational-mechanics': 'essays/07-rotational-mechanics.md',
+  'on-enumeration': 'essays/08-on-enumeration.md'
 };
 
 function renderMd(md) {
