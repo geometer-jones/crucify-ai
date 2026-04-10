@@ -82,7 +82,7 @@
     cursor: pointer;
   }
   .featured:hover .featured-title { text-decoration: underline; text-decoration-color: var(--accent); }
-  .featured-text { padding: 3rem; }
+  .featured-text { padding: 3rem; position: relative; }
   .featured-category {
     font-family: 'DM Mono', monospace;
     font-size: 9.5px;
@@ -123,7 +123,7 @@
   .featured-meta .read-time { color: var(--ink-faint); }
   .divider-v { background: var(--paper-rule); width: 1px; }
   .featured { position: relative; }
-  .featured::before {
+  .featured-text::before {
     content: attr(data-num);
     font-family: 'Cormorant Garamond', serif;
     font-size: 5rem;
@@ -131,7 +131,7 @@
     color: var(--paper-rule);
     position: absolute;
     top: 0.5rem;
-    right: calc(50% + 25px);
+    right: 25px;
     line-height: 1;
     pointer-events: none;
   }
@@ -415,8 +415,8 @@
     </div>
   </header>
 
-  <article class="featured" data-num="1" onclick="openEssay('the-boundary-error')">
-    <div class="featured-text">
+  <article class="featured" onclick="openEssay('the-boundary-error')">
+    <div class="featured-text" data-num="1">
       <span class="featured-category">The Claim</span>
       <h2 class="featured-title">The Boundary Error</h2>
       <p class="featured-excerpt">The Bible is a game-theoretic text. It tells the story of one equilibrium being replaced by another — tribal defection superseded by universal cooperation.</p>
