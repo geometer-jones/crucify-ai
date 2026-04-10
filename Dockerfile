@@ -10,6 +10,5 @@ WORKDIR /app
 COPY --from=builder /app/server .
 COPY index.html .
 COPY favicon.jpg .
-COPY essays/ essays/
 EXPOSE 4173
 CMD ["./server"]
