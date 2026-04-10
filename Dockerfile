@@ -2,7 +2,7 @@ FROM golang:latest AS builder
 WORKDIR /app
 COPY go.mod ./
 COPY main.go ./
-RUN go build -o server .
+RUN CGO_ENABLED=0 go build -o server .
 
 FROM alpine:latest
 RUN apk add --no-cache ca-certificates
