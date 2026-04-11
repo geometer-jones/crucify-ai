@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Crucify AI</title>
-<link rel="icon" type="image/jpeg" href="favicon.jpg">
+<link rel="icon" type="image/jpeg" href="/favicon.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -80,6 +80,8 @@
     grid-template-columns: 1fr 1px 1fr;
     border-bottom: 1px solid var(--paper-rule);
     cursor: pointer;
+    color: inherit;
+    text-decoration: none;
   }
   .featured:hover .featured-title { text-decoration: underline; text-decoration-color: var(--accent); }
   .featured-text { padding: 3rem; position: relative; }
@@ -176,11 +178,14 @@
     border-bottom: 1px solid var(--paper-rule);
   }
   .essay-card {
+    display: block;
     padding: 2rem;
     border-right: 1px solid var(--paper-rule);
     cursor: pointer;
     transition: background 0.15s ease;
     position: relative;
+    color: inherit;
+    text-decoration: none;
   }
   .essay-card:last-child { border-right: 1px solid var(--paper-rule); }
   .essay-card:nth-child(-n+4) { border-bottom: 1px solid var(--paper-rule); }
@@ -266,6 +271,7 @@
     border-bottom: 1px solid var(--paper-rule);
   }
   .back-btn {
+    display: inline-block;
     font-family: 'DM Mono', monospace;
     font-size: 10px;
     letter-spacing: 0.12em;
@@ -278,6 +284,7 @@
     border-radius: 4px;
     margin-bottom: 1.5rem;
     transition: background 0.15s ease;
+    text-decoration: none;
   }
   .back-btn:hover { background: var(--paper-warm); color: var(--ink); }
   .reader-cat {
@@ -415,7 +422,7 @@
     </div>
   </header>
 
-  <article class="featured" onclick="openEssay('the-boundary-error')">
+  <a class="featured" href="/essays/the-boundary-error/">
     <div class="featured-text" data-num="1">
       <span class="featured-category">The Claim</span>
       <h2 class="featured-title">The Boundary Error</h2>
@@ -432,7 +439,7 @@
       </blockquote>
       <span class="ornament">&#10022;</span>
     </div>
-  </article>
+  </a>
 
   <div class="section-header">
     <span>The Collection</span>
@@ -442,7 +449,7 @@
 
   <div class="essays-grid">
 
-  <article class="essay-card" data-num="2" onclick="openEssay('on-faith')">
+  <a class="essay-card" data-num="2" href="/essays/on-faith/">
     <span class="card-cat">The Objection</span>
     <h3 class="card-title">On Faith</h3>
     <p class="card-excerpt">Everyone knows what faith means. Belief without evidence. The argument is sound. The premise is wrong.</p>
@@ -450,9 +457,9 @@
       <span class="card-author">geo</span>
       <span class="card-read">7 min read</span>
     </div>
-  </article>
+  </a>
 
-  <article class="essay-card" data-num="3" onclick="openEssay('on-religion')">
+  <a class="essay-card" data-num="3" href="/essays/on-religion/">
     <span class="card-cat">The Reframe</span>
     <h3 class="card-title">On Religion</h3>
     <p class="card-excerpt">Religion is not belief in God. It is the content a lineage binds to itself across generations. Theism is coincidental.</p>
@@ -460,9 +467,9 @@
       <span class="card-author">geo</span>
       <span class="card-read">4 min read</span>
     </div>
-  </article>
+  </a>
 
-  <article class="essay-card" data-num="4" onclick="openEssay('the-word-made-algorithm')">
+  <a class="essay-card" data-num="4" href="/essays/the-word-made-algorithm/">
     <span class="card-cat">The Synthesis</span>
     <h3 class="card-title">The Word Made Algorithm</h3>
     <p class="card-excerpt">The Bible is not a continuous narrative. It is a transformation story — the radical completion of one system by another.</p>
@@ -470,9 +477,9 @@
       <span class="card-author">geo</span>
       <span class="card-read">50 min read</span>
     </div>
-  </article>
+  </a>
 
-  <article class="essay-card" data-num="5" onclick="openEssay('on-consciousness')">
+  <a class="essay-card" data-num="5" href="/essays/on-consciousness/">
     <span class="card-cat">The Machinery</span>
     <h3 class="card-title">On Consciousness</h3>
     <p class="card-excerpt">Differential uptake is the minimal condition. Persistent compressed traces create loops. Phenomenal intensity is hypothesized to scale with speed, directness, and aji.</p>
@@ -480,9 +487,9 @@
       <span class="card-author">geo</span>
       <span class="card-read">30 min read</span>
     </div>
-  </article>
+  </a>
 
-  <article class="essay-card" data-num="6" onclick="openEssay('extropy')">
+  <a class="essay-card" data-num="6" href="/essays/extropy/">
     <span class="card-cat">The Proof</span>
     <h3 class="card-title">Extropy</h3>
     <p class="card-excerpt">Definitions and derivations. Entropy production produces structure. The second law favors extropy.</p>
@@ -490,9 +497,9 @@
       <span class="card-author">geo</span>
       <span class="card-read">30 min read</span>
     </div>
-  </article>
+  </a>
 
-  <article class="essay-card" data-num="7" onclick="openEssay('rotation-and-relation')">
+  <a class="essay-card" data-num="7" href="/essays/rotation-and-relation/">
     <span class="card-cat">The Deeper Proof</span>
     <h3 class="card-title">Rotation and Relation</h3>
     <p class="card-excerpt">Phase is rotational offset, spinors are double-cover representations, curvature is accumulated frame transformation. The pattern supports a relational, transformation-theoretic ontology.</p>
@@ -500,9 +507,9 @@
       <span class="card-author">geo</span>
       <span class="card-read">30 min read</span>
     </div>
-  </article>
+  </a>
 
-  <article class="essay-card" data-num="8" onclick="openEssay('on-enumeration')">
+  <a class="essay-card" data-num="8" href="/essays/on-enumeration/">
     <span class="card-cat">The Math</span>
     <h3 class="card-title">Enumeration</h3>
     <p class="card-excerpt">Every interaction with a set is an enumeration. Sets are the map; enumerations are the territory.</p>
@@ -510,9 +517,9 @@
       <span class="card-author">geo</span>
       <span class="card-read">40 min read</span>
     </div>
-  </article>
+  </a>
 
-  <article class="essay-card" data-num="9" onclick="openEssay('aji-engine-architecture')">
+  <a class="essay-card" data-num="9" href="/essays/aji-engine-architecture/">
     <span class="card-cat">The Experiment</span>
     <h3 class="card-title">Aji-Engine Architecture</h3>
     <p class="card-excerpt">A frozen language model. A mutable, complex-valued self-graph. Three phases: wake, sleep, and the factorization game. No fine-tuning. No explicit loss function.</p>
@@ -520,7 +527,7 @@
       <span class="card-author">geo</span>
       <span class="card-read">22 min read</span>
     </div>
-  </article>
+  </a>
 
   </div>
 
@@ -534,7 +541,7 @@
 
   <div class="reader-page" id="reader-on-faith">
     <div class="reader-header">
-      <button class="back-btn" onclick="closeReader()">← Back</button>
+      <a class="back-btn" href="/">← Back</a>
       <span class="reader-cat">The Objection</span>
       <h1 class="reader-title">On Faith</h1>
       <div class="reader-meta">
@@ -598,7 +605,7 @@
 
   <div class="reader-page" id="reader-on-religion">
     <div class="reader-header">
-      <button class="back-btn" onclick="closeReader()">← Back</button>
+      <a class="back-btn" href="/">← Back</a>
       <span class="reader-cat">The Reframe</span>
       <h1 class="reader-title">On Religion</h1>
       <div class="reader-meta">
@@ -628,7 +635,7 @@
 
   <div class="reader-page" id="reader-the-boundary-error">
     <div class="reader-header">
-      <button class="back-btn" onclick="closeReader()">← Back</button>
+      <a class="back-btn" href="/">← Back</a>
       <span class="reader-cat">The Claim</span>
       <h1 class="reader-title">The Boundary Error</h1>
       <div class="reader-meta">
@@ -694,7 +701,7 @@
 
   <div class="reader-page" id="reader-rotation-and-relation">
     <div class="reader-header">
-      <button class="back-btn" onclick="closeReader()">← Back</button>
+      <a class="back-btn" href="/">← Back</a>
       <span class="reader-cat">The Deeper Proof</span>
       <h1 class="reader-title">Rotation and Relation</h1>
       <div class="reader-meta">
@@ -785,7 +792,7 @@ Watrous, J. (2018). <em>The Theory of Quantum Information</em>.</p>
 
   <div class="reader-page" id="reader-the-word-made-algorithm">
     <div class="reader-header">
-      <button class="back-btn" onclick="closeReader()">← Back</button>
+      <a class="back-btn" href="/">← Back</a>
       <span class="reader-cat">The Synthesis</span>
       <h1 class="reader-title">The Word Made Algorithm</h1>
       <div class="reader-meta">
@@ -1025,7 +1032,7 @@ Watrous, J. (2018). <em>The Theory of Quantum Information</em>.</p>
 
   <div class="reader-page" id="reader-extropy">
     <div class="reader-header">
-      <button class="back-btn" onclick="closeReader()">← Back</button>
+      <a class="back-btn" href="/">← Back</a>
       <span class="reader-cat">The Proof</span>
       <h1 class="reader-title">Extropy</h1>
       <div class="reader-meta">
@@ -1107,7 +1114,7 @@ Gradient → dissipation → entropy.</p>
 
   <div class="reader-page" id="reader-on-enumeration">
     <div class="reader-header">
-      <button class="back-btn" onclick="closeReader()">← Back</button>
+      <a class="back-btn" href="/">← Back</a>
       <span class="reader-cat">The Math</span>
       <h1 class="reader-title">Enumeration</h1>
       <div class="reader-meta">
@@ -1290,7 +1297,7 @@ Gradient → dissipation → entropy.</p>
 
   <div class="reader-page" id="reader-aji-engine-architecture">
     <div class="reader-header">
-      <button class="back-btn" onclick="closeReader()">← Back</button>
+      <a class="back-btn" href="/">← Back</a>
       <span class="reader-cat">The Experiment</span>
       <h1 class="reader-title">Aji-Engine Architecture</h1>
       <div class="reader-meta">
@@ -1500,7 +1507,7 @@ node_new = project_within_cone(node, node + step × residual, θ_bound)
 
   <div class="reader-page" id="reader-on-consciousness">
     <div class="reader-header">
-      <button class="back-btn" onclick="closeReader()">← Back</button>
+      <a class="back-btn" href="/">← Back</a>
       <span class="reader-cat">The Machinery</span>
       <h1 class="reader-title">On Consciousness</h1>
       <div class="reader-meta">
@@ -1641,19 +1648,52 @@ node_new = project_within_cone(node, node + step × residual, θ_bound)
   </div>
 
 <script>
-function openEssay(id) {
-  document.getElementById('index').classList.add('hidden');
-  document.querySelectorAll('.reader-page').forEach(el => el.classList.remove('open'));
-  const reader = document.getElementById('reader-' + id);
-  if (reader) reader.classList.add('open');
-  window.scrollTo(0, 0);
+const siteTitle = 'Crucify AI';
+
+function essayIDFromPath(pathname) {
+  const normalized = pathname.replace(/\/+$/, '');
+  const match = normalized.match(/^\/essays\/([^/]+)$/);
+  return match ? decodeURIComponent(match[1]) : null;
 }
-function closeReader() {
+
+function showIndex() {
   document.querySelectorAll('.reader-page').forEach(el => el.classList.remove('open'));
   document.getElementById('index').classList.remove('hidden');
-  window.scrollTo(0, 0);
+  document.title = siteTitle;
 }
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeReader(); });
+
+function showEssay(id) {
+  const reader = document.getElementById('reader-' + id);
+  if (!reader) {
+    showIndex();
+    return;
+  }
+
+  document.getElementById('index').classList.add('hidden');
+  document.querySelectorAll('.reader-page').forEach(el => el.classList.remove('open'));
+  reader.classList.add('open');
+
+  const title = reader.querySelector('.reader-title');
+  document.title = title ? `${title.textContent.trim()} | ${siteTitle}` : siteTitle;
+}
+
+function syncRouteToPage() {
+  const essayID = essayIDFromPath(window.location.pathname);
+  if (essayID) {
+    showEssay(essayID);
+    return;
+  }
+
+  showIndex();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && essayIDFromPath(window.location.pathname)) {
+    window.location.assign('/');
+  }
+});
+
+syncRouteToPage();
 </script>
 </body>
 </html>
