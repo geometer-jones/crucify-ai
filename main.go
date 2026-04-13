@@ -170,7 +170,7 @@ func newHandlerWithStore(store *telemetryStore) http.Handler {
 	fs := http.FileServer(http.Dir("."))
 	mux := http.NewServeMux()
 
-	mux.HandleFunc("/telemetry", handleTelemetry(store))
+	mux.HandleFunc("/ping", handleTelemetry(store))
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		if essayID, ok := essayIDFromPath(r.URL.Path); ok {
 			if _, exists := essayIDs[essayID]; exists {

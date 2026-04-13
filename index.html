@@ -695,12 +695,12 @@ function sendTelemetry(eventName, detail = {}) {
 
   if (navigator.sendBeacon) {
     const blob = new Blob([payload], { type: 'application/json' });
-    if (navigator.sendBeacon('/telemetry', blob)) {
+    if (navigator.sendBeacon('/ping', blob)) {
       return;
     }
   }
 
-  fetch('/telemetry', {
+  fetch('/ping', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: payload,
