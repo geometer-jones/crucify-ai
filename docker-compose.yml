@@ -1,8 +1,12 @@
 services:
   web:
     build: .
+    environment:
+      - TELEMETRY_DATA_PATH=/app/data/telemetry-events.jsonl
     ports:
       - "127.0.0.1:4173:4173"
+    volumes:
+      - telemetry_data:/app/data
     restart: unless-stopped
 
   mail:
@@ -35,3 +39,4 @@ services:
 
 volumes:
   stalwart_data:
+  telemetry_data:

@@ -522,10 +522,10 @@
   <a class="essay-card" data-num="9" href="/essays/aji-engine-architecture/">
     <span class="card-cat">The Experiment</span>
     <h3 class="card-title">Aji-Engine Architecture</h3>
-    <p class="card-excerpt">A frozen language model. A mutable, complex-valued self-graph. Three phases: wake, sleep, and the factorization game. No fine-tuning. No explicit loss function.</p>
+    <p class="card-excerpt">A frozen language model. A mutable, factorized self-state. Three phases: wake, sleep, and the factorization game. No fine-tuning. No explicit loss function.</p>
     <div class="card-foot">
       <span class="card-author">geo</span>
-      <span class="card-read">22 min read</span>
+      <span class="card-read">40 min read</span>
     </div>
   </a>
 
@@ -547,6 +547,22 @@ const essayRoot = document.getElementById('reader-root');
 const essaySlugAliases = {
   'on-consciousness': 'self-architecture',
 };
+const telemetryPingIntervalMs = 15000;
+const telemetryStorageKeys = {
+  visitorId: 'crucify-ai:telemetry:visitor-id',
+  sessionId: 'crucify-ai:telemetry:session-id',
+};
+
+const telemetryState = {
+  visitorId: getOrCreateStorageID(getStorageArea('localStorage'), telemetryStorageKeys.visitorId),
+  sessionId: getOrCreateStorageID(getStorageArea('sessionStorage'), telemetryStorageKeys.sessionId),
+  viewId: createTelemetryID(),
+  engagedMs: 0,
+  activeSinceMs: null,
+  maxScrollDepthPct: 0,
+  ended: false,
+  pingTimer: null,
+};
 
 function essayIDFromPath(pathname) {
   const normalized = pathname.replace(/\/+$/, '');
@@ -556,6 +572,168 @@ function essayIDFromPath(pathname) {
 
 function canonicalEssayID(id) {
   return essaySlugAliases[id] || id;
+}
+
+function createTelemetryID() {
+  if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+    return window.crypto.randomUUID();
+  }
+
+  return 'id-' + Math.random().toString(36).slice(2) + Date.now().toString(36);
+}
+
+function getStorageArea(name) {
+  try {
+    return window[name];
+  } catch (_) {
+    return null;
+  }
+}
+
+function getOrCreateStorageID(storage, key) {
+  if (!storage) {
+    return createTelemetryID();
+  }
+
+  try {
+    const existing = storage.getItem(key);
+    if (existing) {
+      return existing;
+    }
+
+    const value = createTelemetryID();
+    storage.setItem(key, value);
+    return value;
+  } catch (_) {
+    return createTelemetryID();
+  }
+}
+
+function telemetryPath() {
+  return window.location.pathname.replace(/\/+$/, '') || '/';
+}
+
+function telemetryEssayID() {
+  const essayID = essayIDFromPath(telemetryPath());
+  return essayID ? canonicalEssayID(essayID) : '';
+}
+
+function telemetryLoadTimeMs() {
+  const navigationEntry = typeof performance.getEntriesByType === 'function'
+    ? performance.getEntriesByType('navigation')[0]
+    : null;
+  if (navigationEntry && Number.isFinite(navigationEntry.domComplete)) {
+    return Math.max(0, Math.round(navigationEntry.domComplete));
+  }
+
+  return Math.max(0, Math.round(performance.now()));
+}
+
+function currentEngagedTimeMs() {
+  const activeTimeMs = telemetryState.activeSinceMs === null
+    ? 0
+    : performance.now() - telemetryState.activeSinceMs;
+
+  return Math.max(0, Math.round(telemetryState.engagedMs + activeTimeMs));
+}
+
+function updateScrollDepth() {
+  const doc = document.documentElement;
+  const scrollHeight = Math.max(doc.scrollHeight, document.body ? document.body.scrollHeight : 0);
+  if (scrollHeight <= 0) {
+    telemetryState.maxScrollDepthPct = Math.max(telemetryState.maxScrollDepthPct, 0);
+    return;
+  }
+
+  const viewedHeight = (window.scrollY || window.pageYOffset || 0) + window.innerHeight;
+  const depthPct = Math.max(0, Math.min(100, Math.round((viewedHeight / scrollHeight) * 100)));
+  telemetryState.maxScrollDepthPct = Math.max(telemetryState.maxScrollDepthPct, depthPct);
+}
+
+function startEngagementTimer() {
+  if (!document.hidden && telemetryState.activeSinceMs === null) {
+    telemetryState.activeSinceMs = performance.now();
+  }
+}
+
+function stopEngagementTimer() {
+  if (telemetryState.activeSinceMs === null) {
+    return;
+  }
+
+  telemetryState.engagedMs += performance.now() - telemetryState.activeSinceMs;
+  telemetryState.activeSinceMs = null;
+}
+
+function telemetryPayload(eventName, detail = {}) {
+  updateScrollDepth();
+
+  return {
+    event: eventName,
+    path: telemetryPath(),
+    essayId: telemetryEssayID(),
+    viewId: telemetryState.viewId,
+    visitorId: telemetryState.visitorId,
+    sessionId: telemetryState.sessionId,
+    title: document.title,
+    referrer: document.referrer,
+    language: navigator.language || '',
+    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || '',
+    visibilityState: document.visibilityState || '',
+    viewportWidth: window.innerWidth || 0,
+    viewportHeight: window.innerHeight || 0,
+    screenWidth: window.screen ? window.screen.width : 0,
+    screenHeight: window.screen ? window.screen.height : 0,
+    engagedTimeMs: currentEngagedTimeMs(),
+    maxScrollDepthPct: telemetryState.maxScrollDepthPct,
+    ...detail,
+  };
+}
+
+function sendTelemetry(eventName, detail = {}) {
+  const payload = JSON.stringify(telemetryPayload(eventName, detail));
+
+  if (navigator.sendBeacon) {
+    const blob = new Blob([payload], { type: 'application/json' });
+    if (navigator.sendBeacon('/telemetry', blob)) {
+      return;
+    }
+  }
+
+  fetch('/telemetry', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: payload,
+    keepalive: true,
+  }).catch(() => {});
+}
+
+function sendTelemetryPing(detail = {}) {
+  sendTelemetry('view_ping', detail);
+}
+
+function finishTelemetry(endReason) {
+  if (telemetryState.ended) {
+    return;
+  }
+
+  telemetryState.ended = true;
+  if (telemetryState.pingTimer !== null) {
+    window.clearInterval(telemetryState.pingTimer);
+    telemetryState.pingTimer = null;
+  }
+
+  stopEngagementTimer();
+  sendTelemetry('view_end', { endReason });
+}
+
+function startTelemetry() {
+  updateScrollDepth();
+  startEngagementTimer();
+  sendTelemetry('view_start', { loadTimeMs: telemetryLoadTimeMs() });
+  telemetryState.pingTimer = window.setInterval(() => {
+    sendTelemetryPing();
+  }, telemetryPingIntervalMs);
 }
 
 function showIndex() {
@@ -611,8 +789,28 @@ document.addEventListener('keydown', e => {
   }
 });
 
+window.addEventListener('scroll', updateScrollDepth, { passive: true });
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    stopEngagementTimer();
+    sendTelemetryPing({ visibilityState: 'hidden' });
+    return;
+  }
+
+  startEngagementTimer();
+  sendTelemetryPing({ visibilityState: 'visible' });
+});
+window.addEventListener('pagehide', () => {
+  finishTelemetry('pagehide');
+});
+window.addEventListener('beforeunload', () => {
+  finishTelemetry('beforeunload');
+});
+
 syncRouteToPage().catch(() => {
   showIndex();
+}).finally(() => {
+  startTelemetry();
 });
 </script>
 </body>
