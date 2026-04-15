@@ -13,7 +13,7 @@ func TestNewHandlerServesIndexForKnownEssayRoute(t *testing.T) {
 	t.Parallel()
 
 	handler := newTestHandler(t)
-	req := httptest.NewRequest(http.MethodGet, "/essays/the-boundary-error", nil)
+	req := httptest.NewRequest(http.MethodGet, "/essays/does-god-exist", nil)
 	rec := httptest.NewRecorder()
 
 	handler.ServeHTTP(rec, req)
@@ -32,10 +32,10 @@ func TestTelemetrySummaryAggregatesEssayMetrics(t *testing.T) {
 
 	handler := newTestHandler(t)
 
-	postTelemetry(t, handler, `{"event":"view_start","path":"/essays/the-boundary-error","essayId":"the-boundary-error","viewId":"view-1","visitorId":"visitor-a","sessionId":"session-a","title":"The Boundary Error | Crucify AI","loadTimeMs":1500}`)
-	postTelemetry(t, handler, `{"event":"view_end","path":"/essays/the-boundary-error","essayId":"the-boundary-error","viewId":"view-1","visitorId":"visitor-a","sessionId":"session-a","title":"The Boundary Error | Crucify AI","engagedTimeMs":120000,"maxScrollDepthPct":95}`)
-	postTelemetry(t, handler, `{"event":"view_start","path":"/essays/the-boundary-error","essayId":"the-boundary-error","viewId":"view-2","visitorId":"visitor-b","sessionId":"session-b","title":"The Boundary Error | Crucify AI","loadTimeMs":900}`)
-	postTelemetry(t, handler, `{"event":"view_end","path":"/essays/the-boundary-error","essayId":"the-boundary-error","viewId":"view-2","visitorId":"visitor-b","sessionId":"session-b","title":"The Boundary Error | Crucify AI","engagedTimeMs":30000,"maxScrollDepthPct":40}`)
+	postTelemetry(t, handler, `{"event":"view_start","path":"/essays/does-god-exist","essayId":"does-god-exist","viewId":"view-1","visitorId":"visitor-a","sessionId":"session-a","title":"Does God Exist? | Crucify AI","loadTimeMs":1500}`)
+	postTelemetry(t, handler, `{"event":"view_end","path":"/essays/does-god-exist","essayId":"does-god-exist","viewId":"view-1","visitorId":"visitor-a","sessionId":"session-a","title":"Does God Exist? | Crucify AI","engagedTimeMs":120000,"maxScrollDepthPct":95}`)
+	postTelemetry(t, handler, `{"event":"view_start","path":"/essays/does-god-exist","essayId":"does-god-exist","viewId":"view-2","visitorId":"visitor-b","sessionId":"session-b","title":"Does God Exist? | Crucify AI","loadTimeMs":900}`)
+	postTelemetry(t, handler, `{"event":"view_end","path":"/essays/does-god-exist","essayId":"does-god-exist","viewId":"view-2","visitorId":"visitor-b","sessionId":"session-b","title":"Does God Exist? | Crucify AI","engagedTimeMs":30000,"maxScrollDepthPct":40}`)
 
 	req := httptest.NewRequest(http.MethodGet, "/telemetry", nil)
 	rec := httptest.NewRecorder()
@@ -61,10 +61,10 @@ func TestTelemetrySummaryAggregatesEssayMetrics(t *testing.T) {
 	}
 
 	essay := summary.Essays[0]
-	if essay.EssayID != "the-boundary-error" {
-		t.Fatalf("expected essay id %q, got %q", "the-boundary-error", essay.EssayID)
+	if essay.EssayID != "does-god-exist" {
+		t.Fatalf("expected essay id %q, got %q", "does-god-exist", essay.EssayID)
 	}
-	if essay.Path != "/essays/the-boundary-error" {
+	if essay.Path != "/essays/does-god-exist" {
 		t.Fatalf("expected canonical essay path, got %q", essay.Path)
 	}
 	if essay.Views != 2 {
@@ -94,7 +94,7 @@ func TestTelemetrySummaryAggregatesEssayMetrics(t *testing.T) {
 	if essay.CompletionRatePct != 50 {
 		t.Fatalf("expected completion rate 50, got %d", essay.CompletionRatePct)
 	}
-	if essay.Title != "The Boundary Error" {
+	if essay.Title != "Does God Exist?" {
 		t.Fatalf("expected cleaned essay title, got %q", essay.Title)
 	}
 }
@@ -103,7 +103,7 @@ func TestTelemetryRejectsInvalidPayloads(t *testing.T) {
 	t.Parallel()
 
 	handler := newTestHandler(t)
-	req := httptest.NewRequest(http.MethodPost, "/telemetry", strings.NewReader(`{"event":"view_start","path":"essays/the-boundary-error"}`))
+	req := httptest.NewRequest(http.MethodPost, "/telemetry", strings.NewReader(`{"event":"view_start","path":"essays/does-god-exist"}`))
 	req.Header.Set("Content-Type", "application/json")
 	rec := httptest.NewRecorder()
 

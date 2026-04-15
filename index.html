@@ -418,11 +418,11 @@
     <div class="masthead-sub">
       <span>An essay journal</span>
       <span>&#9670;</span>
-      <span>Six essays · Spring 2026</span>
+      <span>Five essays · Spring 2026</span>
     </div>
   </header>
 
-  <a class="featured" href="/essays/the-word/">
+  <a class="featured" href="/essays/the-logos/">
     <div class="featured-text" data-num="01">
       <span class="featured-category">The Synthesis</span>
       <h2 class="featured-title">The Logos</h2>
@@ -444,7 +444,7 @@
   <div class="section-header">
     <span>The Collection</span>
     <div class="section-rule"></div>
-    <span>Five more pieces</span>
+    <span>Four more pieces</span>
   </div>
 
   <div class="essays-grid">
@@ -479,23 +479,13 @@
     </div>
   </a>
 
-  <a class="essay-card" data-num="05" href="/essays/self-architecture/">
+  <a class="essay-card" data-num="05" href="/essays/memory-engines/">
     <span class="card-cat">The Theory</span>
-    <h3 class="card-title">Self-Architecture</h3>
-    <p class="card-excerpt">From an apple accelerating under gravity to a conscious mind registering its own operation, the chain is one. What varies is how much history the system carries and how that history feeds back.</p>
+    <h3 class="card-title">Memory Engines</h3>
+    <p class="card-excerpt">Between a falling apple and a conscious system lies a continuous thickening of the same operations — projection, reception, torque, and renormalization on the unit hypersphere in ℂⁿ.</p>
     <div class="card-foot">
       <span class="card-author">geo</span>
-      <span class="card-read">50 min read</span>
-    </div>
-  </a>
-
-  <a class="essay-card" data-num="06" href="/essays/abstraction/">
-    <span class="card-cat">The Insight</span>
-    <h3 class="card-title">Abstraction</h3>
-    <p class="card-excerpt">Abstraction is not something minds do. It is something physics does. The autonomy of higher-level descriptions is not a convenience we impose on the world — it is a structure the world deposits.</p>
-    <div class="card-foot">
-      <span class="card-author">geo</span>
-      <span class="card-read">11 min read</span>
+      <span class="card-read">45 min read</span>
     </div>
   </a>
 
@@ -515,7 +505,10 @@
 const siteTitle = 'Crucify AI';
 const essayRoot = document.getElementById('reader-root');
 const essaySlugAliases = {
-  'on-consciousness': 'self-architecture',
+  'on-consciousness': 'memory-engines',
+  'self-architecture': 'memory-engines',
+  'extropy': 'abstraction',
+  'the-word': 'the-logos',
 };
 const telemetryPingIntervalMs = 15000;
 const telemetryStorageKeys = {
