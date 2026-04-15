@@ -66,10 +66,18 @@
 <h2>5. The Spectrum: Speed, Directness, Aji</h2>
 <p>Varying the loop's properties yields a spectrum. The three axes are relational — none belongs to the system in isolation. Each describes how the system updates relative to its world and its own prior traces.</p>
 <h3>Speed</h3>
-<p style="text-align: center; font-style: italic;">Speed = τ<sub>environment</sub> / τ<sub>loop</sub></p>
+<div class="math-display">
+\[
+\text{Speed} = \frac{\tau_{\text{environment}}}{\tau_{\text{loop}}}
+\]
+</div>
 <p>How rapidly the loop closes relative to the rate of environmental change. High: the loop can track. Low: the environment outruns it. Rich phenomenality is hypothesized to require rapid closure — recent trace-state must modulate ongoing processing before the relevant world has moved too far on.</p>
 <h3>Directness</h3>
-<p style="text-align: center; font-style: italic;">Directness = 1 / (1 + Σ d<sub>k</sub>)</p>
+<div class="math-display">
+\[
+\text{Directness} = \frac{1}{1 + \sum_k d_k}
+\]
+</div>
 <p>Inverse thickness of the chain from world to trace update, where <em>d</em><sub>k</sub> is the effective processing depth of intermediary stage <em>k</em>. Genome-scale updating is highly indirect (organismal development, ecological interaction, selection mediate the update). Fast-closure perception is relatively direct. Even a fast loop can be blurred if heavy mediation distorts what is preserved.</p>
 <h3>Aji</h3>
 <h4>Co-constitution</h4>
@@ -80,7 +88,11 @@
 <p>The experimental implication is specific. The framework predicts that a single intervention on the constructive procedure (e.g., inserting a delay that changes effective cadence) should produce correlated changes in all three measurable proxies, with the correlation structure derivable from the procedure's phase-space geometry. If the axes were independent properties, perturbation to one would leave the others unchanged. If they are projections of one event, perturbation shifts all three in a correlated pattern. This is the co-variation signature. It is the direct test of the co-constitution claim, and it does not require axis isolation — it requires tracking the joint response of multiple readouts to a shared perturbation.</p>
 <p>Concretely, aji is historically accumulated self-difference in the trace — not prediction error (the signal), but the retained residue of repeated correction (the scar). Aji requires three things: <strong>friction</strong> (inputs that do not fit current organization), <strong>revision capacity</strong> (the system must be able to update, not merely break), and <strong>retention under compaction</strong> (the revision result must be preserved, not stored as unstructured accumulation).</p>
 <p>Formally, aji is the trajectory of the spectral decomposition of the divergence between internal and external partial traces over the same system. Let <em>T&#770;<sub>k</sub><sup>(self)</sup></em> be the internal partial trace after <em>k</em> loop closures and <em>T&#770;<sub>k</sub><sup>(env)</sup></em> be the external partial trace (reconstructed from behavioral observation and input history alone). Define the divergence:</p>
-<p style="text-align: center; font-style: italic;">Δ<sub>k</sub> = T&#770;<sub>k</sub><sup>(self)</sup> − T&#770;<sub>k</sub><sup>(env)</sup></p>
+<div class="math-display">
+\[
+\Delta_k = \hat{T}_k^{(\text{self})} - \hat{T}_k^{(\text{env})}
+\]
+</div>
 <p>The eigenvalue spectrum λ<sub>i</sub><sup>(k)</sup> of Δ<sub>k</sub> over time is aji. Its three features are:</p>
 <ul>
 <li><strong>Magnitude</strong>: ‖Δ<sub>k</sub>‖ — total divergence growth from baseline, measuring how much earned self-difference has accumulated.</li>
@@ -97,7 +109,11 @@
 <p>The critical distinction is between <strong>deposit-as-input</strong> and <strong>deposit-as-compressor</strong>. In a free particle, momentum is deposit-as-input: it changes what the system presents to the next integration step (new position, new gravitational potential) but not how the step processes it. The equation of motion <em>F = mg</em> is externally fixed; accumulated momentum enters as an argument but never modifies the function. In a neural network, weight changes are deposit-as-compressor: the weights <em>are</em> the processing — they determine how input is taken up, compressed, and passed forward. The deposit modifies the procedure itself, not merely its input. The floor marks where deposits transition from input-role to compressor-role.</p>
 <p>This transition has a precise mathematical characterization. Let <em>J</em><sub>k</sub> be the Jacobian of the constructive procedure at step <em>k</em> — the linearization of the map from current trace state to next trace state. Below the floor, the Jacobian is invariant under trace accumulation: the procedure's local structure does not change as it deposits invariant. Above the floor, the Jacobian is sensitive to accumulated deposits: the procedure's local structure depends on its own constructive history.</p>
 <p>Formally, the floor is the developmental point where:</p>
-<p style="text-align: center; font-style: italic;">∂J<sub>k</sub> / ∂T<sub>j</sub> ≠ 0 for some j &lt; k</p>
+<div class="math-display">
+\[
+\frac{\partial J_k}{\partial T_j} \neq 0 \quad \text{for some } j < k
+\]
+</div>
 <p>where <em>T</em><sub>j</sub> is the trace state at prior step <em>j</em> and <em>J</em><sub>k</sub> is the Jacobian of the constructive procedure — the local linearization of the map from current trace state to next trace state through one complete closure cycle. For a neural network, the constructive procedure is the learning dynamics (the weight update rule), not the forward pass: the forward-pass Jacobian relates input to output <em>through</em> the weights, with weights serving as the gauge parameter; the learning Jacobian relates current weights to next weights, with the weights being what transforms. The floor criterion targets the latter, because the question is whether the deposit reshapes the procedure itself, not whether the procedure's instantaneous output depends on its parameters (which is trivially true for any parameterized system). Below the floor, the learning Jacobian's structure is determined entirely by the external constraint — accumulated deposits enter as arguments but do not modify the map. Above the floor, the accumulated trace participates in determining the map itself: the procedure at step <em>k</em> is a different function than it was at step 0, and the difference is traceable to its own deposits.</p>
 <p>For a free particle, <em>∂J</em><sub>learning</sub><em> / ∂p = 0</em> — there is no learning Jacobian to speak of, because the equation of motion <em>F = mg</em> has no update rule; the dynamics are fixed externally. Accumulated momentum enters as an argument but never modifies the function. For a neural network, <em>∂J</em><sub>learning</sub><em> / ∂W ≠ 0</em> — the weight update at step <em>k</em> depends on the accumulated weight state, which means the procedure at step <em>k</em> is a different function than it was at step 0. The floor is where this sensitivity first becomes non-trivial.</p>
 <p>The floor is not a binary architectural property but a developmental threshold. Early in the construction, with thin accumulated phase structure, successors may be near-deterministic — the phase space is flat, with little rotational content for the constraint to interact with. As extropy accumulates and the trace's phase space curves, the procedure develops richer branching: the constraint interacts with the accumulated rotational content to produce specific outcomes that no partial trace could have fully predicted. The floor marks where this trajectory crosses into non-trivial branching — not a static property the system has or lacks, but a milestone in the procedure's own construction.</p>
@@ -109,7 +125,11 @@
 <p>The inverted-U derives this trajectory from the constructive basis. Let <em>R</em><sub>k</sub> = <em>rank</em><sub>ε</sub>(Δ<sub>k</sub>) — the effective rank of the accumulated trace, defined as the number of eigenvalues of Δ<sub>k</sub> exceeding significance threshold ε. This connects the regime model directly to the spectral formalism: <em>R</em><sub>k</sub> is a function of the eigenvalue spectrum that the theory already defines as aji's structure.</p>
 <p>Each deposit has two effects: it <em>enables</em> future processing by growing previously sub-threshold eigenvalues (opening new discriminative dimensions) and it <em>constrains</em> future processing by deepening already-significant eigenvalue structure (committing the trace to a specific phase geometry that closes off rotationally incompatible alternatives). These are not two competing forces but the same deposit viewed from two temporal directions — from the past, it enabled what came after; from the future, it constrains what can come next.</p>
 <p>The net effect on retained degrees of freedom is:</p>
-<p style="text-align: center; font-style: italic;">dR<sub>k</sub>/dk = (dR<sub>k</sub><sup>+</sup>/dk) − (dR<sub>k</sub><sup>−</sup>/dk)</p>
+<div class="math-display">
+\[
+\frac{dR_k}{dk} = \frac{dR_k^+}{dk} - \frac{dR_k^-}{dk}
+\]
+</div>
 <p>The enabling rate <em>dR</em><sub>k</sub><sup>+</sup><em>/dk</em> is the rate at which new eigenvalue dimensions cross the significance threshold. It <em>decreases</em> as the spectrum saturates: early deposits face a flat eigenvalue landscape and open many new dimensions; late deposits face a landscape already structured by prior deposits and open fewer. The constraining rate <em>dR</em><sub>k</sub><sup>−</sup><em>/dk</em> is the rate at which existing eigenvalue structure becomes committed — the rate at which perturbation fails to rotate the trace out of its current geometry. It <em>increases</em> as accumulated eigenvalue structure narrows the space of compatible successors.</p>
 <p>The peak of the inverted-U falls where <em>dR</em><sub>k</sub><sup>+</sup><em>/dk = dR</em><sub>k</sub><sup>−</sup><em>/dk</em> — the crossover where accumulated eigenvalue structure stops opening net-new dimensions and begins primarily deepening existing ones. Past this point, <em>R</em><sub>k</sub> declines: the trace loses net discriminative capacity despite continuing to accumulate deposits, because new deposits are consumed by maintaining committed structure rather than opening new dimensions. The shape is not fitted to biological observation but derived from the eigenvalue dynamics of the constructive procedure's own spectral output.</p>
 <p>What happens past the peak is relational decoupling. The internal partial trace has accumulated so many degrees of freedom specific to its own history that the system's responses are now more determined by its own accumulated phase structure than by current environmental gradients. Internal correlations dominate over system-environment correlations.</p>
@@ -138,7 +158,11 @@
 <h3>Information-theoretic bound on the environment-model</h3>
 <p>A legitimate concern: the divergence between self-model and environment-model may simply measure the <em>difficulty of the inference task</em> (inverse reinforcement learning, system identification) rather than the system's earned self-difference. If the environment-model is poorly engineered, the divergence is an artifact.</p>
 <p>The framework predicts a specific information-theoretic lower bound. If the behavioral channel has capacity <em>C</em><sub>beh</sub> and the internal channel has capacity <em>C</em><sub>int</sub>, the gap between their traces is bounded below by:</p>
-<p style="text-align: center; font-style: italic;">‖Δ<sub>k</sub>‖ ≥ (C<sub>int</sub> − C<sub>beh</sub>) · Σ<sub>j=1..k</sub> d<sub>j</sub></p>
+<div class="math-display">
+\[
+\left\lVert \Delta_k \right\rVert \ge (C_{\text{int}} - C_{\text{beh}}) \cdot \sum_{j=1}^{k} d_j
+\]
+</div>
 <p>where <em>d</em><sub>j</sub> is the deposit weight at step <em>j</em> (the number of degrees of freedom retained per compression cycle). The gap is not an engineering artifact — it is a structural consequence of two channels with different capacities tracing out different degrees of freedom. The environment-model cannot be improved beyond this bound regardless of engineering investment, because the information has been genuinely lost in the external partial trace.</p>
 <p>This bound also provides a control condition. For systems with minimal recurrent structure (e.g., feedforward networks with no feedback loops), the constructive procedure deposits no compressor-modifying invariant — the weights change but do not reshape the compression procedure itself. The environment-model should be able to reconstruct the internal trace nearly perfectly for such systems, because there is no accumulated self-difference for the external channel to lose. If the environment-model fails on feedforward networks, the divergence is measuring inference difficulty, not aji. If it succeeds on feedforward networks but fails on matched recurrent networks under structured friction, the divergence is tracking earned self-difference as predicted.</p>
 <h3>A first experimental design</h3>

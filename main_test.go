@@ -37,7 +37,7 @@ func TestTelemetrySummaryAggregatesEssayMetrics(t *testing.T) {
 	postTelemetry(t, handler, `{"event":"view_start","path":"/essays/does-god-exist","essayId":"does-god-exist","viewId":"view-2","visitorId":"visitor-b","sessionId":"session-b","title":"Does God Exist? | Crucify AI","loadTimeMs":900}`)
 	postTelemetry(t, handler, `{"event":"view_end","path":"/essays/does-god-exist","essayId":"does-god-exist","viewId":"view-2","visitorId":"visitor-b","sessionId":"session-b","title":"Does God Exist? | Crucify AI","engagedTimeMs":30000,"maxScrollDepthPct":40}`)
 
-	req := httptest.NewRequest(http.MethodGet, "/telemetry", nil)
+	req := httptest.NewRequest(http.MethodGet, "/ping", nil)
 	rec := httptest.NewRecorder()
 	handler.ServeHTTP(rec, req)
 
@@ -103,7 +103,7 @@ func TestTelemetryRejectsInvalidPayloads(t *testing.T) {
 	t.Parallel()
 
 	handler := newTestHandler(t)
-	req := httptest.NewRequest(http.MethodPost, "/telemetry", strings.NewReader(`{"event":"view_start","path":"essays/does-god-exist"}`))
+	req := httptest.NewRequest(http.MethodPost, "/ping", strings.NewReader(`{"event":"view_start","path":"essays/does-god-exist"}`))
 	req.Header.Set("Content-Type", "application/json")
 	rec := httptest.NewRecorder()
 
@@ -134,7 +134,7 @@ func newTestHandler(t *testing.T) http.Handler {
 func postTelemetry(t *testing.T, handler http.Handler, body string) {
 	t.Helper()
 
-	req := httptest.NewRequest(http.MethodPost, "/telemetry", strings.NewReader(body))
+	req := httptest.NewRequest(http.MethodPost, "/ping", strings.NewReader(body))
 	req.Header.Set("Content-Type", "application/json")
 	req.RemoteAddr = "203.0.113.10:4242"
 	req.Header.Set("User-Agent", "TelemetryTest/1.0")

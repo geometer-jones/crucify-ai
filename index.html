@@ -80,9 +80,10 @@
     grid-template-columns: 1fr 1px 1fr;
     border-bottom: 1px solid var(--paper-rule);
     cursor: pointer;
-    color: inherit;
-    text-decoration: none;
+    position: relative;
   }
+  .featured-link { position: absolute; inset: 0; z-index: 1; }
+  .featured > *:not(.featured-link) { position: relative; }
   .featured:hover .featured-title { text-decoration: underline; text-decoration-color: var(--accent); }
   .featured-text { padding: 3rem; position: relative; }
   .featured-category {
@@ -114,6 +115,7 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+    flex-wrap: wrap;
   }
   .featured-meta .author, .featured-meta .read-time {
     font-family: 'DM Mono', monospace;
@@ -184,9 +186,9 @@
     cursor: pointer;
     transition: background 0.15s ease;
     position: relative;
-    color: inherit;
-    text-decoration: none;
   }
+  .essay-card-link { position: absolute; inset: 0; z-index: 1; }
+  .essay-card > *:not(.essay-card-link) { position: relative; }
   .essay-card:last-child { border-right: 1px solid var(--paper-rule); }
   .essay-card:nth-child(-n+4) { border-bottom: 1px solid var(--paper-rule); }
   .essay-card:hover { background: var(--paper-warm); }
@@ -216,8 +218,6 @@
     font-weight: 400;
     line-height: 1.25;
     margin-bottom: 0.75rem;
-    position: relative;
-    z-index: 1;
   }
   .card-title em { font-style: italic; font-weight: 300; }
   .card-excerpt {
@@ -225,8 +225,6 @@
     font-weight: 300;
     line-height: 1.65;
     color: var(--ink-muted);
-    position: relative;
-    z-index: 1;
   }
   .card-foot {
     margin-top: 1.25rem;
@@ -235,6 +233,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
   }
   .card-author, .card-read {
     font-family: 'DM Mono', monospace;
@@ -244,6 +250,36 @@
   }
   .card-author { color: var(--ink); }
   .card-read { color: var(--ink-faint); }
+  .copy-text-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: none;
+    border: 1px solid var(--paper-rule);
+    color: var(--ink-muted);
+    padding: 0.4rem 0.65rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    white-space: nowrap;
+    position: relative;
+    z-index: 2;
+  }
+  .copy-text-btn:hover:not(:disabled) {
+    background: var(--paper-warm);
+    color: var(--ink);
+    border-color: var(--ink-faint);
+  }
+  .copy-text-btn:focus-visible {
+    outline: 1px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .copy-text-btn:disabled {
+    opacity: 0.75;
+    cursor: wait;
+  }
+  .featured-copy-btn { margin-left: auto; }
 
   footer {
     padding: 1.5rem 3rem;
@@ -270,6 +306,15 @@
     padding: 3rem 2rem 2rem;
     border-bottom: 1px solid var(--paper-rule);
   }
+  .reader-header-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+  .reader-header-actions .back-btn { margin-bottom: 0; }
   .back-btn {
     display: inline-block;
     font-family: 'DM Mono', monospace;
@@ -374,16 +419,99 @@
     padding: 0.1em 0.3em;
     border-radius: 3px;
   }
-  .reader-body table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1.5rem 0;
-    font-size: 0.9rem;
-  }
-  .reader-body td {
-    padding: 0.5rem 0.75rem;
+  .reader-body .reader-table-wrap {
+    margin: 1.75rem 0;
     border: 1px solid var(--paper-rule);
+    border-radius: 14px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.015));
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: var(--paper-rule) transparent;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+  }
+  .reader-body table {
+    width: max-content;
+    min-width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 0;
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+  .reader-body th,
+  .reader-body td {
+    padding: 0.8rem 0.9rem;
+    border-right: 1px solid var(--paper-rule);
+    border-bottom: 1px solid var(--paper-rule);
     text-align: left;
+    vertical-align: top;
+    min-width: 8rem;
+  }
+  .reader-body tr > :last-child { border-right: none; }
+  .reader-body tbody tr:last-child > * { border-bottom: none; }
+  .reader-body thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: rgba(255,255,255,0.06);
+  }
+  .reader-body tbody th {
+    font-weight: 500;
+    color: var(--ink);
+    background: rgba(255,255,255,0.03);
+  }
+  .reader-body tbody tr:nth-child(odd) > * {
+    background-color: rgba(255,255,255,0.018);
+  }
+  .reader-body :is(th, td) > :last-child { margin-bottom: 0; }
+  .reader-body table caption {
+    caption-side: top;
+    padding: 0 0 0.85rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .reader-body .math-display {
+    margin: 1.75rem 0;
+    padding: 0.95rem 1.15rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    text-align: center;
+    color: var(--ink);
+    border: 1px solid var(--paper-rule);
+    border-radius: 14px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.015));
+    scrollbar-width: thin;
+    scrollbar-color: var(--paper-rule) transparent;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+  }
+  .reader-body .math-display mjx-container {
+    font-size: clamp(1rem, 0.94rem + 0.22vw, 1.08rem) !important;
+  }
+  .reader-body .math-display mjx-container[display="true"] {
+    margin: 0 auto !important;
+    min-width: fit-content;
+  }
+  .reader-body .reader-table-wrap::-webkit-scrollbar,
+  .reader-body .math-display::-webkit-scrollbar {
+    height: 0.55rem;
+  }
+  .reader-body .reader-table-wrap::-webkit-scrollbar-thumb,
+  .reader-body .math-display::-webkit-scrollbar-thumb {
+    background: var(--paper-rule);
+    border-radius: 999px;
+  }
+  .reader-body .reader-table-wrap::-webkit-scrollbar-track,
+  .reader-body .math-display::-webkit-scrollbar-track {
+    background: transparent;
   }
 
   /* RESPONSIVE */
@@ -403,8 +531,25 @@
     .essays-grid { grid-template-columns: 1fr; }
     .masthead-top { flex-direction: column; gap: 0.25rem; }
     .reader-body, .reader-header { padding: 1.5rem 1rem; }
+    .reader-body .reader-table-wrap { margin: 1.5rem -0.2rem; border-radius: 12px; }
+    .reader-body table { font-size: 0.82rem; }
+    .reader-body th, .reader-body td { min-width: 6.5rem; padding: 0.7rem 0.75rem; }
+    .reader-body .math-display { padding: 0.8rem 0.9rem; border-radius: 12px; }
   }
 </style>
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['\\(', '\\)']],
+      displayMath: [['\\[', '\\]']],
+      processEscapes: true,
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+    },
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 </head>
 <body>
 
@@ -418,28 +563,30 @@
     <div class="masthead-sub">
       <span>An essay journal</span>
       <span>&#9670;</span>
-      <span>Five essays · Spring 2026</span>
+      <span>Six essays · Spring 2026</span>
     </div>
   </header>
 
-  <a class="featured" href="/essays/the-logos/">
-    <div class="featured-text" data-num="01">
-      <span class="featured-category">The Synthesis</span>
-      <h2 class="featured-title">The Logos</h2>
-      <p class="featured-excerpt">The Bible is not a continuous narrative. It is a reformation story — the overthrow of one system by another. The Old Testament is not the prelude to the New. It is the enemy the New Testament defeats.</p>
+  <article class="featured">
+    <a class="featured-link" href="/essays/memory-engines/" aria-label="Read Memory Engines"></a>
+    <div class="featured-text" data-num="00">
+      <span class="featured-category">The Framework</span>
+      <h2 class="featured-title">Memory Engines</h2>
+      <p class="featured-excerpt">Between a falling apple and a conscious system lies a continuous thickening of the same operations — projection, reception, torque, and renormalization on the unit hypersphere in ℂⁿ.</p>
       <div class="featured-meta">
         <span class="author">geo</span>
-        <span class="read-time">· 40 min read</span>
+        <span class="read-time">· 81 min read</span>
+        <button class="copy-text-btn featured-copy-btn" type="button" data-copy-essay-id="memory-engines" data-default-label="Copy text" aria-label="Copy text for Memory Engines">Copy text</button>
       </div>
     </div>
     <div class="divider-v"></div>
     <div class="featured-aside">
       <blockquote class="pull-quote">
-        "Abraham fragments the universal into tribes; Jesus re-unifies at a higher level. The helix ascends."
+        "The operating regime is where scaling and rotation are balanced on the hypersphere — concentrated enough to retain orientation and diffuse enough to accommodate torque."
       </blockquote>
       <span class="ornament">&#10022;</span>
     </div>
-  </a>
+  </article>
 
   <div class="section-header">
     <span>The Collection</span>
@@ -449,45 +596,61 @@
 
   <div class="essays-grid">
 
-  <a class="essay-card" data-num="02" href="/essays/faith/">
+  <article class="essay-card" data-num="01">
+    <a class="essay-card-link" href="/essays/the-logos/" aria-label="Read The Logos"></a>
+    <span class="card-cat">The Synthesis</span>
+    <h3 class="card-title">The Logos</h3>
+    <p class="card-excerpt">The Bible is not a continuous narrative. It is a reformation story — the overthrow of one system by another. The Old Testament is not the prelude to the New. It is the enemy the New Testament defeats.</p>
+    <div class="card-foot">
+      <div class="card-meta">
+        <span class="card-author">geo</span>
+        <span class="card-read">· 40 min read</span>
+      </div>
+      <button class="copy-text-btn" type="button" data-copy-essay-id="the-logos" data-default-label="Copy text" aria-label="Copy text for The Logos">Copy text</button>
+    </div>
+  </article>
+
+  <article class="essay-card" data-num="02">
+    <a class="essay-card-link" href="/essays/faith/" aria-label="Read Faith Means Proof"></a>
     <span class="card-cat">The Recovery</span>
     <h3 class="card-title">Faith Means Proof</h3>
     <p class="card-excerpt">Everyone knows what faith means. Belief without evidence. The argument is sound. The premise is wrong.</p>
     <div class="card-foot">
-      <span class="card-author">geo</span>
-      <span class="card-read">5 min read</span>
+      <div class="card-meta">
+        <span class="card-author">geo</span>
+        <span class="card-read">· 5 min read</span>
+      </div>
+      <button class="copy-text-btn" type="button" data-copy-essay-id="faith" data-default-label="Copy text" aria-label="Copy text for Faith Means Proof">Copy text</button>
     </div>
-  </a>
+  </article>
 
-  <a class="essay-card" data-num="03" href="/essays/religion/">
+  <article class="essay-card" data-num="03">
+    <a class="essay-card-link" href="/essays/religion/" aria-label="Read Religion Means Read-Only Memory"></a>
     <span class="card-cat">The Reframe</span>
     <h3 class="card-title">Religion Means Read-Only Memory</h3>
     <p class="card-excerpt">Religion is not belief in God. It is the content a lineage binds to itself across generations. Theism is coincidental.</p>
     <div class="card-foot">
-      <span class="card-author">geo</span>
-      <span class="card-read">5 min read</span>
+      <div class="card-meta">
+        <span class="card-author">geo</span>
+        <span class="card-read">· 5 min read</span>
+      </div>
+      <button class="copy-text-btn" type="button" data-copy-essay-id="religion" data-default-label="Copy text" aria-label="Copy text for Religion Means Read-Only Memory">Copy text</button>
     </div>
-  </a>
+  </article>
 
-  <a class="essay-card" data-num="04" href="/essays/does-god-exist/">
+  <article class="essay-card" data-num="04">
+    <a class="essay-card-link" href="/essays/does-god-exist/" aria-label="Read Does God Exist?"></a>
     <span class="card-cat">The Definition</span>
     <h3 class="card-title">Does God Exist?</h3>
     <p class="card-excerpt">The question is malformed. "God" is not one word — it is a placeholder for a family of definitions that are not interchangeable and not all testable in the same way.</p>
     <div class="card-foot">
-      <span class="card-author">geo</span>
-      <span class="card-read">5 min read</span>
+      <div class="card-meta">
+        <span class="card-author">geo</span>
+        <span class="card-read">· 5 min read</span>
+      </div>
+      <button class="copy-text-btn" type="button" data-copy-essay-id="does-god-exist" data-default-label="Copy text" aria-label="Copy text for Does God Exist?">Copy text</button>
     </div>
-  </a>
-
-  <a class="essay-card" data-num="05" href="/essays/memory-engines/">
-    <span class="card-cat">The Theory</span>
-    <h3 class="card-title">Memory Engines</h3>
-    <p class="card-excerpt">Between a falling apple and a conscious system lies a continuous thickening of the same operations — projection, reception, torque, and renormalization on the unit hypersphere in ℂⁿ.</p>
-    <div class="card-foot">
-      <span class="card-author">geo</span>
-      <span class="card-read">45 min read</span>
-    </div>
-  </a>
+  </article>
 
   </div>
 
@@ -511,10 +674,26 @@ const essaySlugAliases = {
   'the-word': 'the-logos',
 };
 const telemetryPingIntervalMs = 15000;
+const copyFeedbackResetDelayMs = 2000;
 const telemetryStorageKeys = {
   visitorId: 'crucify-ai:telemetry:visitor-id',
   sessionId: 'crucify-ai:telemetry:session-id',
 };
+const copyButtonResetTimers = new WeakMap();
+const mathJaxReady = (() => {
+  const script = document.getElementById('MathJax-script');
+  if (window.MathJax && typeof window.MathJax.typesetPromise === 'function') {
+    return Promise.resolve(window.MathJax);
+  }
+  if (!script) {
+    return Promise.resolve(null);
+  }
+
+  return new Promise(resolve => {
+    script.addEventListener('load', () => resolve(window.MathJax || null), { once: true });
+    script.addEventListener('error', () => resolve(null), { once: true });
+  });
+})();
 
 const telemetryState = {
   visitorId: getOrCreateStorageID(getStorageArea('localStorage'), telemetryStorageKeys.visitorId),
@@ -709,6 +888,12 @@ async function ensureEssayLoaded(id) {
   const canonicalID = canonicalEssayID(id);
   const existing = document.getElementById('reader-' + canonicalID);
   if (existing) {
+    enhanceReaderHeader(existing, canonicalID);
+    standardizeReaderContent(existing);
+    snapshotMathCopyText(existing);
+    if (existing.dataset.mathTypeset !== 'true' && await typesetMath(existing)) {
+      existing.dataset.mathTypeset = 'true';
+    }
     return existing;
   }
 
@@ -718,7 +903,276 @@ async function ensureEssayLoaded(id) {
   }
 
   essayRoot.insertAdjacentHTML('beforeend', await response.text());
-  return document.getElementById('reader-' + canonicalID);
+  const reader = document.getElementById('reader-' + canonicalID);
+  enhanceReaderHeader(reader, canonicalID);
+  standardizeReaderContent(reader);
+  snapshotMathCopyText(reader);
+  if (await typesetMath(reader)) {
+    reader.dataset.mathTypeset = 'true';
+  }
+  return reader;
+}
+
+function enhanceReaderHeader(reader, essayID) {
+  if (!reader) {
+    return;
+  }
+
+  const header = reader.querySelector('.reader-header');
+  if (!header) {
+    return;
+  }
+
+  let actions = header.querySelector('.reader-header-actions');
+  if (!actions) {
+    actions = document.createElement('div');
+    actions.className = 'reader-header-actions';
+    header.insertBefore(actions, header.firstChild);
+  }
+
+  const backButton = header.querySelector('.back-btn');
+  if (backButton && backButton.parentElement !== actions) {
+    actions.appendChild(backButton);
+  }
+
+  let copyButton = header.querySelector('.reader-copy-btn');
+  if (!copyButton) {
+    copyButton = document.createElement('button');
+    copyButton.type = 'button';
+    copyButton.className = 'copy-text-btn reader-copy-btn';
+    copyButton.dataset.defaultLabel = 'Copy text';
+    copyButton.textContent = 'Copy text';
+    actions.appendChild(copyButton);
+  }
+
+  copyButton.dataset.copyEssayId = essayID;
+  const title = normalizeCopiedText(reader.querySelector('.reader-title')?.textContent) || 'essay';
+  copyButton.setAttribute('aria-label', `Copy text for ${title}`);
+}
+
+function normalizeCopiedText(text) {
+  return (text || '')
+    .replace(/\u00a0/g, ' ')
+    .replace(/\r\n/g, '\n')
+    .replace(/[ \t]+\n/g, '\n')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+}
+
+function snapshotMathCopyText(root) {
+  if (!root) {
+    return;
+  }
+
+  root.querySelectorAll('.math-display').forEach(block => {
+    if (block.dataset.copyText) {
+      return;
+    }
+
+    const text = normalizeCopiedText(block.textContent)
+      .replace(/^\\\[\s*/, '')
+      .replace(/\s*\\\]$/, '')
+      .trim();
+
+    if (text) {
+      block.dataset.copyText = text;
+    }
+  });
+}
+
+function standardizeReaderContent(reader) {
+  if (!reader || reader.dataset.contentStandardized === 'true') {
+    return;
+  }
+
+  reader.querySelectorAll('.reader-body table').forEach((table, index) => {
+    if (!table.tHead) {
+      const firstBody = table.tBodies[0];
+      const firstRow = firstBody ? firstBody.rows[0] : table.rows[0];
+      if (firstRow) {
+        const thead = document.createElement('thead');
+        const headerRow = document.createElement('tr');
+
+        Array.from(firstRow.cells).forEach(cell => {
+          const th = document.createElement('th');
+          Array.from(cell.attributes).forEach(attr => {
+            if (attr.name !== 'scope') {
+              th.setAttribute(attr.name, attr.value);
+            }
+          });
+          th.scope = 'col';
+          th.innerHTML = cell.innerHTML;
+          headerRow.appendChild(th);
+        });
+
+        thead.appendChild(headerRow);
+        table.insertBefore(thead, table.firstChild);
+        firstRow.remove();
+      }
+    }
+
+    if (!table.parentElement.classList.contains('reader-table-wrap')) {
+      const wrap = document.createElement('div');
+      wrap.className = 'reader-table-wrap';
+      wrap.setAttribute('role', 'region');
+      wrap.setAttribute('aria-label', `Essay table ${index + 1}`);
+      table.parentElement.insertBefore(wrap, table);
+      wrap.appendChild(table);
+    }
+  });
+
+  reader.dataset.contentStandardized = 'true';
+}
+
+async function typesetMath(root) {
+  const mathJax = await mathJaxReady;
+  if (!mathJax || typeof mathJax.typesetPromise !== 'function') {
+    return false;
+  }
+
+  await mathJax.typesetPromise(root ? [root] : undefined);
+  return true;
+}
+
+function serializeEssayBlock(block) {
+  if (block.classList.contains('math-display')) {
+    return block.dataset.copyText || normalizeCopiedText(block.textContent);
+  }
+
+  if (block.classList.contains('reader-table-wrap')) {
+    const table = block.querySelector('table');
+    return table ? serializeEssayBlock(table) : '';
+  }
+
+  const tagName = block.tagName.toUpperCase();
+
+  if (tagName === 'UL' || tagName === 'OL') {
+    return Array.from(block.querySelectorAll(':scope > li'))
+      .map((item, itemIndex) => {
+        const prefix = tagName === 'OL' ? `${itemIndex + 1}. ` : '- ';
+        return prefix + normalizeCopiedText(item.textContent);
+      })
+      .filter(Boolean)
+      .join('\n');
+  }
+
+  if (tagName === 'TABLE') {
+    return Array.from(block.querySelectorAll('tr'))
+      .map(row => Array.from(row.children)
+        .map(cell => normalizeCopiedText(cell.textContent))
+        .filter(Boolean)
+        .join(' | '))
+      .filter(Boolean)
+      .join('\n');
+  }
+
+  const text = normalizeCopiedText(block.textContent);
+  if (!text) {
+    return '';
+  }
+
+  if (tagName === 'BLOCKQUOTE') {
+    return text
+      .split('\n')
+      .map(line => line ? '> ' + line : line)
+      .join('\n');
+  }
+
+  return text;
+}
+
+function buildEssayCopyText(reader) {
+  if (!reader) {
+    return '';
+  }
+
+  const title = normalizeCopiedText(reader.querySelector('.reader-title')?.textContent);
+  const category = normalizeCopiedText(reader.querySelector('.reader-cat')?.textContent);
+  const meta = Array.from(reader.querySelectorAll('.reader-meta span'))
+    .map(node => normalizeCopiedText(node.textContent))
+    .filter(text => text && text !== '·')
+    .join(' · ');
+  const body = Array.from(reader.querySelectorAll('.reader-body > *'))
+    .map(serializeEssayBlock)
+    .filter(Boolean)
+    .join('\n\n');
+
+  return [title, category, meta, body].filter(Boolean).join('\n\n');
+}
+
+function fallbackCopyText(text) {
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.setAttribute('readonly', '');
+  textarea.style.position = 'fixed';
+  textarea.style.top = '0';
+  textarea.style.left = '-9999px';
+
+  document.body.appendChild(textarea);
+  textarea.focus();
+  textarea.select();
+  textarea.setSelectionRange(0, textarea.value.length);
+
+  const copied = typeof document.execCommand === 'function' && document.execCommand('copy');
+  document.body.removeChild(textarea);
+
+  if (!copied) {
+    throw new Error('clipboard unavailable');
+  }
+}
+
+async function writeTextToClipboard(text) {
+  if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function' && window.isSecureContext) {
+    await navigator.clipboard.writeText(text);
+    return;
+  }
+
+  fallbackCopyText(text);
+}
+
+function setCopyButtonLabel(button, label, shouldReset = true) {
+  button.textContent = label;
+
+  const existingTimer = copyButtonResetTimers.get(button);
+  if (existingTimer) {
+    window.clearTimeout(existingTimer);
+  }
+
+  if (!shouldReset) {
+    copyButtonResetTimers.delete(button);
+    return;
+  }
+
+  const resetTimer = window.setTimeout(() => {
+    button.textContent = button.dataset.defaultLabel || 'Copy text';
+    copyButtonResetTimers.delete(button);
+  }, copyFeedbackResetDelayMs);
+
+  copyButtonResetTimers.set(button, resetTimer);
+}
+
+async function copyEssayText(id, button) {
+  if (!button) {
+    return;
+  }
+
+  button.disabled = true;
+  setCopyButtonLabel(button, 'Copying...', false);
+
+  try {
+    const reader = await ensureEssayLoaded(id);
+    const text = buildEssayCopyText(reader);
+    if (!text) {
+      throw new Error('essay copy text unavailable');
+    }
+
+    await writeTextToClipboard(text);
+    setCopyButtonLabel(button, 'Copied');
+  } catch (_) {
+    setCopyButtonLabel(button, 'Copy failed');
+  } finally {
+    button.disabled = false;
+  }
 }
 
 async function showEssay(id) {
@@ -750,6 +1204,16 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && essayIDFromPath(window.location.pathname)) {
     window.location.assign('/');
   }
+});
+document.addEventListener('click', event => {
+  const button = event.target.closest('[data-copy-essay-id]');
+  if (!button) {
+    return;
+  }
+
+  event.preventDefault();
+  event.stopPropagation();
+  copyEssayText(button.dataset.copyEssayId, button);
 });
 
 window.addEventListener('scroll', updateScrollDepth, { passive: true });
