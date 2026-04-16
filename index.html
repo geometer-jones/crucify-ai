@@ -679,6 +679,7 @@ const telemetryStorageKeys = {
   sessionId: 'crucify-ai:telemetry:session-id',
 };
 const copyButtonResetTimers = new WeakMap();
+const mathTypesetTasks = new WeakMap();
 const mathJaxReady = (() => {
   const script = document.getElementById('MathJax-script');
   if (window.MathJax && typeof window.MathJax.typesetPromise === 'function') {
@@ -890,9 +891,7 @@ async function ensureEssayLoaded(id) {
     enhanceReaderHeader(existing, canonicalID);
     standardizeReaderContent(existing);
     snapshotMathCopyText(existing);
-    if (existing.dataset.mathTypeset !== 'true' && await typesetMath(existing)) {
-      existing.dataset.mathTypeset = 'true';
-    }
+    queueMathTypeset(existing);
     return existing;
   }
 
@@ -906,10 +905,26 @@ async function ensureEssayLoaded(id) {
   enhanceReaderHeader(reader, canonicalID);
   standardizeReaderContent(reader);
   snapshotMathCopyText(reader);
-  if (await typesetMath(reader)) {
-    reader.dataset.mathTypeset = 'true';
-  }
+  queueMathTypeset(reader);
   return reader;
+}
+
+function queueMathTypeset(reader) {
+  if (!reader || reader.dataset.mathTypeset === 'true' || mathTypesetTasks.has(reader)) {
+    return;
+  }
+
+  const task = (async () => {
+    if (await typesetMath(reader)) {
+      reader.dataset.mathTypeset = 'true';
+    }
+  })().catch(() => {
+    // Rendering should not block navigation if MathJax is slow or unavailable.
+  }).finally(() => {
+    mathTypesetTasks.delete(reader);
+  });
+
+  mathTypesetTasks.set(reader, task);
 }
 
 function enhanceReaderHeader(reader, essayID) {
