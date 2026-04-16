@@ -25,8 +25,8 @@ const (
 )
 
 var essayRouteAliases = map[string]string{
-	"on-consciousness": "self-architecture",
-	"extropy":          "abstraction",
+	"on-consciousness":  "memory-engines",
+	"self-architecture": "memory-engines",
 }
 
 type telemetryEvent struct {

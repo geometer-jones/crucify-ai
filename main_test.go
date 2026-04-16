@@ -27,6 +27,24 @@ func TestNewHandlerServesIndexForKnownEssayRoute(t *testing.T) {
 	}
 }
 
+func TestNewHandlerServesIndexForLegacyMemoryEnginesRoute(t *testing.T) {
+	t.Parallel()
+
+	handler := newTestHandler(t)
+	req := httptest.NewRequest(http.MethodGet, "/essays/self-architecture", nil)
+	rec := httptest.NewRecorder()
+
+	handler.ServeHTTP(rec, req)
+
+	if rec.Code != http.StatusOK {
+		t.Fatalf("expected status %d, got %d", http.StatusOK, rec.Code)
+	}
+
+	if !strings.Contains(rec.Body.String(), "<title>Crucify AI</title>") {
+		t.Fatalf("expected legacy memory engines route to serve the shared index shell")
+	}
+}
+
 func TestTelemetrySummaryAggregatesEssayMetrics(t *testing.T) {
 	t.Parallel()
 

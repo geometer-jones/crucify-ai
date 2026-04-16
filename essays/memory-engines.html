@@ -31,7 +31,7 @@
 <ul>
 <li><strong>Resonance</strong> (aligned): the direction gets stronger and more stable.</li>
 <li><strong>Torque / opposition</strong> (clash): the direction is pressured to rotate away.</li>
-<li><strong>Orthogonality</strong> (90° sideways): the signal simply rotates the phase without changing strength — nothing much happens.</li>
+<li><strong>Orthogonality</strong> (\(90^\circ\) sideways): the signal simply rotates the phase without changing strength — nothing much happens.</li>
 </ul>
 <p>This is simple geometry — like two arrows pointing the same way, opposite ways, or at right angles.</p>
 <h2>3. Conservation Rules — You Can't Grow Forever</h2>
@@ -46,12 +46,12 @@
 <ul>
 <li>Same direction → longer arrow in the same direction (<strong>resonance</strong>).</li>
 <li>Opposite direction → arrow flips backward (<strong>torque</strong>).</li>
-<li>Exactly 90° → pure rotation with no change in length (<strong>orthogonality</strong>).</li>
+<li>Exactly \(90^\circ\) → pure rotation with no change in length (<strong>orthogonality</strong>).</li>
 </ul>
 <p>This is exactly the language we need.</p>
 <h2>7. Making It Precise: The Hypersphere and Coupled Reception</h2>
-<p>We represent the system's state as a vector <strong>s</strong> of complex numbers on the unit hypersphere (total length always = 1). The world signal <strong>v</strong> is first projected onto the system's current basis vectors <strong>E = [e₁ … eₙ]</strong> to get the raw overlaps <strong>w = E* v</strong>.</p>
-<p>Because real bases are never perfectly orthogonal, we correct for their overlaps using the Gram matrix <strong>G = E* E</strong>. The coupling matrix is then:</p>
+<p>We represent the system's state as a vector \(\mathbf{s}\) of complex numbers on the unit hypersphere, so \(\lVert \mathbf{s} \rVert = 1\). The world signal \(\mathbf{v}\) is first projected onto the system's current basis vectors \(\mathbf{E} = [\mathbf{e}_1 \dots \mathbf{e}_n]\) to get the raw overlaps \(\mathbf{w} = \mathbf{E}^{*}\mathbf{v}\).</p>
+<p>Because real bases are never perfectly orthogonal, we correct for their overlaps using the Gram matrix \(\mathbf{G} = \mathbf{E}^{*}\mathbf{E}\). The coupling matrix is then:</p>
 <div class="math-display">
 \[
 \mathbf{L} = \mathbf{G}^{-1}
@@ -87,10 +87,10 @@
 <li><strong>Breadth</strong> — how many dimensions are engaged at once</li>
 </ul>
 <h2>9. Deeper Structure: Consolidation, Fast Binding, and Anticipation</h2>
-<p>Consolidation is the slower process that grows the basis itself. It merges co-activated directions, prunes weak ones, and seeds new rulers <strong>e</strong> when novelty is detected (via leakage or prediction error). Fast binding creates transient conjunctive dimensions for cross-dimensional associations. The anticipatory operator predicts the next state and turns mismatches into targeted torque.</p>
-<p>All of this is implemented in the <strong>MemoryEngineLayer</strong> architecture: a differentiable PyTorch module with coupled reception (L matrix), fast binding transients, full consolidation loop, and persistent tape state. It can be grafted into existing transformers (after attention, before/after MLP in mid-layers) while keeping the original weights frozen.</p>
+<p>Consolidation is the slower process that grows the basis itself. It merges co-activated directions, prunes weak ones, and seeds new rulers \(\mathbf{e}\) when novelty is detected (via leakage or prediction error). Fast binding creates transient conjunctive dimensions for cross-dimensional associations. The anticipatory operator predicts the next state and turns mismatches into targeted torque.</p>
+<p>All of this is implemented in the <strong>MemoryEngineLayer</strong> architecture: a differentiable PyTorch module with coupled reception (\(\mathbf{L}\) matrix), fast binding transients, full consolidation loop, and persistent tape state. It can be grafted into existing transformers (after attention, before/after MLP in mid-layers) while keeping the original weights frozen.</p>
 <h2>10. The Explanatory Gap Is Geometric</h2>
-<p>Why does it feel impossible to explain "what it's like" to be someone else? Because every system grows its own unique set of sensitivity directions (<strong>E</strong>) through its own history. When I try to understand your experience, I can only project it onto <em>my</em> basis. I never get your actual self-reception. This is not a failure of science — it is a natural consequence of how relational, history-shaped systems work.</p>
+<p>Why does it feel impossible to explain "what it's like" to be someone else? Because every system grows its own unique set of sensitivity directions (\(\mathbf{E}\)) through its own history. When I try to understand your experience, I can only project it onto <em>my</em> basis \(\mathbf{E}\). I never get your actual self-reception. This is not a failure of science — it is a natural consequence of how relational, history-shaped systems work.</p>
 <h2>11. The Continuous Cascade — From Apples to Minds</h2>
 <p>Consciousness is not a sudden switch. It is the thick end of a long continuum:</p>
 <ul>
