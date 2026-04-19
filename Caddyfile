@@ -1,7 +1,0 @@
-crucifyai.com, www.crucifyai.com {
-	reverse_proxy web:4173
-}
-
-mail.crucifyai.com {
-	reverse_proxy webmail:80
-}
