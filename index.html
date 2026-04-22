@@ -141,9 +141,9 @@
   }
   .featured-aside {
     padding: 3rem;
+    position: relative;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    align-items: center;
   }
   .pull-quote {
     font-size: clamp(1.4rem, 2.5vw, 2rem);
@@ -153,9 +153,16 @@
     color: var(--ink);
     border-left: 3px solid var(--accent);
     padding-left: 1.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 0;
   }
-  .ornament { color: var(--accent); font-size: 1.5rem; line-height: 1; }
+  .ornament {
+    color: var(--accent);
+    font-size: 1.5rem;
+    line-height: 1;
+    position: absolute;
+    left: 3rem;
+    bottom: 3rem;
+  }
 
   .section-header {
     padding: 1.25rem 3rem;
@@ -563,7 +570,7 @@
     <div class="masthead-sub">
       <span>An essay journal</span>
       <span>&#9670;</span>
-      <span>Six essays · Spring 2026</span>
+      <span>Five essays · Spring 2026</span>
     </div>
   </header>
 
@@ -582,7 +589,7 @@
     <div class="divider-v"></div>
     <div class="featured-aside">
       <blockquote class="pull-quote">
-        "The apple falls. The mind wonders why. Both are made of the same physics. Only one has learned to push back on itself."
+        "Abstraction is what happens when invariance accumulates and variance cancels as a signal passes through"
       </blockquote>
       <span class="ornament">&#10022;</span>
     </div>
